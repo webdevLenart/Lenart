@@ -10,6 +10,21 @@ export const site = {
   shortName: 'LI',
   roles: ['Web Developer', 'Front-End Developer', 'AI Developer'],
 
+  /**
+   * The hero headline ends with "Creating for …" and cycles through these
+   * words once. The animation comes to rest on the last one.
+   */
+  heroAudiences: [
+    'restaurants',
+    'coffee shops',
+    'agencies',
+    'hotels',
+    'boutiques',
+    'salons',
+    'startups',
+    'your business',
+  ],
+
   /** Public URL of the deployed site. Used for canonical and Open Graph tags. */
   url: 'https://webdevlenart.github.io/Lenart/',
 

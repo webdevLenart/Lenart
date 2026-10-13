@@ -3,7 +3,9 @@
  * and a small code card describing what the site is about. Purely visual,
  * so it is hidden from assistive technology.
  */
-export default function HeroArtwork() {
+export default function HeroArtwork({ audience }) {
+  const typed = `'for ${audience}'`;
+
   return (
     <figure className="artwork" aria-hidden="true">
       <div className="artwork__stage">
@@ -37,8 +39,12 @@ export default function HeroArtwork() {
               <span className="tok-key">const</span> lenart = {'{'}
               {'\n'}  focus: [<span className="tok-str">'web'</span>, <span className="tok-str">'front-end'</span>, <span className="tok-str">'ai'</span>],
               {'\n'}  builds: <span className="tok-str">'for the web'</span>,
-              {'\n'}  creates: <span className="tok-str">'for people'</span>,
-              {'\n'}{'}'};<span className="artwork__caret" />
+              {'\n'}  creates:{' '}
+              <span key={audience} className="tok-str artwork__typed" style={{ '--chars': typed.length }}>
+                {typed}
+              </span>
+              ,<span className="artwork__caret" />
+              {'\n'}{'}'};
             </code>
           </pre>
         </div>
