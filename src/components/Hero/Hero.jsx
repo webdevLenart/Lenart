@@ -1,4 +1,5 @@
-import { ArrowDown, ArrowRight } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { ArrowDown, ArrowRight, Pause } from 'lucide-react';
 import { site } from '../../data/site.js';
 import { useWordCycle } from '../../hooks/useWordCycle.js';
 import Button from '../ui/Button.jsx';
@@ -11,10 +12,26 @@ const lastAudience = audiences[audiences.length - 1];
 const audienceSentence = `${audiences.slice(0, -1).join(', ')} and ${lastAudience}`;
 
 export default function Hero() {
-  const audienceIndex = useWordCycle(audiences.length);
+  const sectionRef = useRef(null);
+  const [inView, setInView] = useState(true);
+  const [hovered, setHovered] = useState(false);
+  const [userPaused, setUserPaused] = useState(false);
+
+  // Only animate while the hero is on screen
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || !('IntersectionObserver' in window)) return undefined;
+    const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting));
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  const { index: audienceIndex, animated } = useWordCycle(audiences.length, {
+    paused: userPaused || hovered || !inView,
+  });
 
   return (
-    <section id="home" className="hero" aria-labelledby="hero-title">
+    <section id="home" ref={sectionRef} className="hero" aria-labelledby="hero-title">
       <div className="container hero__inner">
         <div className="hero__content">
           <p className="eyebrow hero__eyebrow hero-enter" style={{ '--enter-delay': '60ms' }}>
@@ -22,7 +39,12 @@ export default function Hero() {
             Hello, I’m Lenart Ismaili
           </p>
 
-          <h1 id="hero-title" className="hero__title">
+          <h1
+            id="hero-title"
+            className="hero__title"
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+          >
             {/* One stable sentence for screen readers and search engines */}
             <span className="visually-hidden">
               Building for the web. Creating for {audienceSentence}.
@@ -39,6 +61,18 @@ export default function Hero() {
               </span>
             </span>
           </h1>
+
+          {animated ? (
+            <button
+              type="button"
+              className="hero__motion-toggle"
+              aria-pressed={userPaused}
+              onClick={() => setUserPaused((paused) => !paused)}
+            >
+              <Pause size={14} aria-hidden="true" />
+              Pause headline animation
+            </button>
+          ) : null}
 
           <p className="hero__intro hero-enter" style={{ '--enter-delay': '340ms' }}>
             I’m a Web Developer, Front-End Developer, and AI Developer passionate about building

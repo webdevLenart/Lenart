@@ -7,13 +7,12 @@ const LEAVE_MS = 600;
  * away while the next one settles in and the underline redraws beneath it.
  */
 export default function RotatingWord({ words, index }) {
-  const [initialIndex] = useState(index);
-  const [state, setState] = useState({ index, leaving: null });
+  const [state, setState] = useState({ index, leaving: null, changed: false });
 
   // Keep the outgoing word in the same render as the incoming one, so the
   // two cross-fade without a blank frame in between.
   if (state.index !== index) {
-    setState({ index, leaving: state.index });
+    setState({ index, leaving: state.index, changed: true });
   }
 
   useEffect(() => {
@@ -22,7 +21,8 @@ export default function RotatingWord({ words, index }) {
     return () => window.clearTimeout(timer);
   }, [state.leaving]);
 
-  const isIntro = index === initialIndex;
+  // The first word arrives with the page's load-in, later ones animate in
+  const isIntro = !state.changed;
 
   return (
     <span className="rotator">
