@@ -1,18 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const prefersReducedMotion = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /**
- * Steps through `count` items once, holding each for `interval` ms, and
- * stops on the last one. Pauses while the tab is hidden so the sequence
- * isn't missed, and starts on the final item when motion is reduced.
+ * Loops through `count` items, holding each for `interval` ms (the first
+ * one a little longer while the page loads in). Waits while `paused` is
+ * true or the tab is hidden. When motion is reduced it stays on the last
+ * item and never advances.
  */
-export function useWordCycle(count, { interval = 2300, firstHold = 3200 } = {}) {
-  const [index, setIndex] = useState(() => (prefersReducedMotion() ? count - 1 : 0));
+export function useWordCycle(count, { interval = 2300, firstHold = 3200, paused = false } = {}) {
+  const [reduceMotion] = useState(prefersReducedMotion);
+  const [index, setIndex] = useState(() => (reduceMotion ? count - 1 : 0));
+  const hasAdvanced = useRef(false);
 
   useEffect(() => {
-    if (index >= count - 1) return undefined;
+    if (reduceMotion || paused || count < 2) return undefined;
 
     let timer;
     const advance = () => {
@@ -20,12 +23,13 @@ export function useWordCycle(count, { interval = 2300, firstHold = 3200 } = {}) 
         timer = window.setTimeout(advance, 400);
         return;
       }
-      setIndex((current) => Math.min(current + 1, count - 1));
+      hasAdvanced.current = true;
+      setIndex((current) => (current + 1) % count);
     };
 
-    timer = window.setTimeout(advance, index === 0 ? firstHold : interval);
+    timer = window.setTimeout(advance, hasAdvanced.current ? interval : firstHold);
     return () => window.clearTimeout(timer);
-  }, [index, count, interval, firstHold]);
+  }, [index, count, interval, firstHold, paused, reduceMotion]);
 
-  return index;
+  return { index, animated: !reduceMotion && count > 1 };
 }

@@ -11,8 +11,8 @@ export const site = {
   roles: ['Web Developer', 'Front-End Developer', 'AI Developer'],
 
   /**
-   * The hero headline ends with "Creating for …" and cycles through these
-   * words once. The animation comes to rest on the last one.
+   * The hero headline ends with "Creating for …" and loops through these
+   * words. With reduced motion, only the last one is shown.
    */
   heroAudiences: [
     'restaurants',
