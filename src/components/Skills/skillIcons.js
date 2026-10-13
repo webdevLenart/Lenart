@@ -1,4 +1,4 @@
-import { Atom, Braces, CodeXml, FileCode2, Palette, PenTool, Sparkles } from 'lucide-react';
+import { Atom, Braces, CodeXml, FileCode2, Palette, Sparkles } from 'lucide-react';
 
 /**
  * Icon registry for src/data/skills.js. Add a key here to use a new Lucide
@@ -6,7 +6,6 @@ import { Atom, Braces, CodeXml, FileCode2, Palette, PenTool, Sparkles } from 'lu
  */
 export const skillIcons = {
   code: CodeXml,
-  design: PenTool,
   ai: Sparkles,
   html: FileCode2,
   css: Palette,

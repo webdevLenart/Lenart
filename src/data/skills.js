@@ -20,21 +20,6 @@ export const skillGroups = [
     ],
   },
   {
-    id: 'ui-ux',
-    title: 'UI/UX Design',
-    icon: 'design',
-    summary:
-      'Design thinking that shapes every build, so interfaces are clear, comfortable and easy to use.',
-    items: [
-      { name: 'User interface design' },
-      { name: 'User experience principles' },
-      { name: 'Responsive design' },
-      { name: 'Accessibility' },
-      { name: 'Visual hierarchy' },
-      { name: 'Component-based design' },
-    ],
-  },
-  {
     id: 'ai',
     title: 'AI Development',
     icon: 'ai',
