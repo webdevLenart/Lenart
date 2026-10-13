@@ -1,0 +1,85 @@
+.contact__panel {
+  position: relative;
+  display: grid;
+  gap: var(--space-8);
+  padding: clamp(var(--space-6), 1rem + 5vw, var(--space-9)) clamp(var(--space-5), 0.5rem + 5vw, var(--space-9));
+  overflow: hidden;
+  border: var(--border);
+  border-radius: var(--radius-xl);
+  background: var(--paper);
+  box-shadow: var(--shadow-soft);
+  isolation: isolate;
+}
+
+/* Sun in the corner, echoing the hero artwork */
+.contact__sun {
+  position: absolute;
+  z-index: -1;
+  top: clamp(-17rem, -15vw, -6rem);
+  right: clamp(-12rem, -9vw, -4rem);
+  width: clamp(13rem, 34vw, 28rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 65%, #e4bc93 0%, var(--sand) 62%);
+  opacity: 0.3;
+}
+
+.contact__main {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: var(--space-5);
+}
+
+.contact__title {
+  margin-top: var(--space-2);
+  font-size: var(--fs-h2);
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.04;
+}
+
+.contact__title-line {
+  display: block;
+}
+
+.contact__text {
+  max-width: 34rem;
+  font-size: clamp(1.075rem, 1rem + 0.35vw, 1.25rem);
+  color: var(--color-text-muted);
+}
+
+.contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding-top: var(--space-2);
+}
+
+.contact__hint {
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+}
+
+.contact__aside {
+  align-self: end;
+}
+
+.contact__aside-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--charcoal);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 960px) {
+  .contact__panel {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: clamp(var(--space-7), 6vw, var(--space-9));
+  }
+}

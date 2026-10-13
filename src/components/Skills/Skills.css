@@ -1,0 +1,128 @@
+.skills {
+  background-color: var(--sand-soft);
+  background-image: var(--grain);
+  border-radius: var(--radius-xl);
+}
+
+.skills__grid {
+  display: grid;
+  border-top: 1px solid var(--charcoal);
+}
+
+.skill-group {
+  display: grid;
+  align-content: start;
+  gap: var(--space-4);
+  padding-block: var(--space-6) var(--space-7);
+}
+
+.skill-group + .skill-group {
+  border-top: 1px solid rgb(37 40 35 / 0.14);
+}
+
+.skill-group__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+}
+
+.skill-group__icon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--paper);
+  border: var(--border);
+}
+
+.skill-group__index {
+  font-size: 1.5rem;
+  color: var(--color-text-accent);
+}
+
+.skill-group__title {
+  font-size: var(--fs-h3);
+  letter-spacing: -0.025em;
+}
+
+.skill-group__summary {
+  max-width: 30rem;
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+
+.skill-list {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.skill {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 2.25rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.975rem;
+  letter-spacing: -0.01em;
+}
+
+.skill--tech {
+  min-height: 2.75rem;
+}
+
+.skill__icon {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-sm);
+  background: rgb(255 254 250 / 0.7);
+  border: var(--border);
+  color: var(--charcoal);
+}
+
+.skill__dot {
+  width: 0.4rem;
+  height: 0.4rem;
+  margin-inline: 0.2rem 0.35rem;
+  border-radius: 50%;
+  background: var(--sand);
+}
+
+.skills__note {
+  margin-top: var(--space-6);
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+
+.skills__note .serif-accent {
+  font-size: 1.15rem;
+  color: var(--color-text);
+}
+
+@media (min-width: 900px) {
+  .skills__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .skill-group {
+    padding: var(--space-6) clamp(var(--space-5), 3vw, var(--space-7)) var(--space-6);
+  }
+
+  .skill-group:first-child {
+    padding-left: 0;
+  }
+
+  .skill-group:last-child {
+    padding-right: 0;
+  }
+
+  .skill-group + .skill-group {
+    border-top: 0;
+    border-left: 1px solid rgb(37 40 35 / 0.14);
+  }
+}
