@@ -5,7 +5,7 @@ The personal portfolio of **Lenart Ismaili**, Web Developer, Front-End Developer
 A warm, editorial single-page site built with React and Vite: ivory and sand tones, confident
 typography, and a featured case study of [TwoMindsDev](https://twomindsdev.com/).
 
-![Preview of the portfolio: “Building for the web. Creating for people.”](public/og-image.png)
+![Preview of the portfolio: “Building for the web. Creating for your business.”](public/og-image.png)
 
 - **Live site:** https://webdevlenart.github.io/Lenart/ (once GitHub Pages is enabled, see [Deployment](#deployment))
 - **GitHub:** [@webdevLenart](https://github.com/webdevLenart)
@@ -48,7 +48,7 @@ All content lives in plain JavaScript files in `src/data/`, so you rarely need t
 
 | File | What it controls |
 | --- | --- |
-| `src/data/site.js` | Name, roles, social links, the public site URL and an optional email address |
+| `src/data/site.js` | Name, roles, the businesses the hero headline cycles through, social links, the public site URL and an optional email address |
 | `src/data/navigation.js` | Navigation links (each `id` matches a section on the page) |
 | `src/data/skills.js` | Skill groups and technologies |
 | `src/data/projects.js` | Projects shown in the Projects section |

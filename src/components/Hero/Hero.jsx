@@ -1,9 +1,18 @@
 import { ArrowDown, ArrowRight } from 'lucide-react';
+import { site } from '../../data/site.js';
+import { useWordCycle } from '../../hooks/useWordCycle.js';
 import Button from '../ui/Button.jsx';
 import HeroArtwork from './HeroArtwork.jsx';
+import RotatingWord from './RotatingWord.jsx';
 import './Hero.css';
 
+const audiences = site.heroAudiences;
+const lastAudience = audiences[audiences.length - 1];
+const audienceSentence = `${audiences.slice(0, -1).join(', ')} and ${lastAudience}`;
+
 export default function Hero() {
+  const audienceIndex = useWordCycle(audiences.length);
+
   return (
     <section id="home" className="hero" aria-labelledby="hero-title">
       <div className="container hero__inner">
@@ -14,16 +23,19 @@ export default function Hero() {
           </p>
 
           <h1 id="hero-title" className="hero__title">
-            <span className="hero__line hero-enter" style={{ '--enter-delay': '140ms' }}>
-              Building for the web.
-            </span>{' '}
-            <span className="hero__line hero-enter" style={{ '--enter-delay': '240ms' }}>
-              <span className="hero__nowrap">Creating for</span>{' '}
-              <span className="hero__accent">
-                <span className="serif-accent">people.</span>
-                <svg className="hero__swash" viewBox="0 0 220 24" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-                  <path d="M3 17C48 8 118 4 217 12" />
-                </svg>
+            {/* One stable sentence for screen readers and search engines */}
+            <span className="visually-hidden">
+              Building for the web. Creating for {audienceSentence}.
+            </span>
+            <span aria-hidden="true">
+              <span className="hero__line hero-enter" style={{ '--enter-delay': '140ms' }}>
+                Building for the web.
+              </span>
+              <span className="hero__line hero-enter" style={{ '--enter-delay': '240ms' }}>
+                Creating for
+              </span>
+              <span className="hero__line hero-enter" style={{ '--enter-delay': '320ms' }}>
+                <RotatingWord words={audiences} index={audienceIndex} />
               </span>
             </span>
           </h1>
@@ -44,7 +56,7 @@ export default function Hero() {
         </div>
 
         <div className="hero__visual hero-enter" style={{ '--enter-delay': '260ms' }}>
-          <HeroArtwork />
+          <HeroArtwork audience={audiences[audienceIndex]} />
         </div>
 
         <div className="hero__footer hero-enter" style={{ '--enter-delay': '560ms' }}>
