@@ -1,12 +1,6 @@
 .about__grid {
   display: grid;
-  gap: var(--space-8);
-}
-
-.about__story {
-  display: grid;
-  align-content: start;
-  gap: var(--space-5);
+  gap: var(--space-6);
 }
 
 .about__lead {
@@ -17,58 +11,26 @@
   letter-spacing: -0.015em;
 }
 
+.about__aside {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: var(--space-5);
+}
+
 .about__text {
   max-width: 36rem;
   color: var(--color-text-muted);
 }
 
-.about__github {
-  justify-self: start;
-  margin-top: var(--space-2);
-}
-
-.about__principles {
-  align-self: start;
-}
-
-.about__principles-title {
-  padding-bottom: var(--space-4);
-  border-bottom: 1px solid var(--charcoal);
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-}
-
-.principle {
-  display: grid;
-  grid-template-columns: 2.75rem minmax(0, 1fr);
-  gap: var(--space-3);
-  padding-block: var(--space-5);
-  border-bottom: var(--border);
-}
-
-.principle__index {
-  font-size: 1.3rem;
-  line-height: 1.3;
-  color: var(--color-text-accent);
-}
-
-.principle__title {
-  font-size: 1.1rem;
-  letter-spacing: -0.015em;
-}
-
-.principle__text {
-  margin-top: var(--space-1);
-  font-size: var(--fs-sm);
-  color: var(--color-text-muted);
-}
-
 @media (min-width: 960px) {
   .about__grid {
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
     gap: clamp(var(--space-7), 7vw, var(--space-9));
+  }
+
+  .about__aside {
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--charcoal);
   }
 }

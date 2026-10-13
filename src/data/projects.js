@@ -26,7 +26,7 @@ export const projects = [
       },
     ],
     highlights: ['Mobile-first layout', 'English · Macedonian · Albanian', 'Light and dark themes'],
-    tags: ['Web Development', 'Responsive Design', 'UI/UX Design', 'Multilingual'],
+    tags: ['Web Development', 'Responsive Design', 'Multilingual'],
     preview: {
       desktop: {
         src: 'projects/twomindsdev/desktop',
